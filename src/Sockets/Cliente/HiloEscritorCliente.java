@@ -19,7 +19,7 @@ public class HiloEscritorCliente extends Thread{
             try {
                 Scanner scanner = new Scanner(System.in);
                 String message = scanner.nextLine();
-                if(message.equalsIgnoreCase("")){
+                if(message.trim().length() > 0){
                     OutputStream outputStream = socket.getOutputStream();
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
                     writer.write(message);

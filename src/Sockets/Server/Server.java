@@ -11,17 +11,13 @@ public class Server {
     static List<Socket> listaHiloClients = new ArrayList<>();
     static int contador=0;
     public static void main(String[] args) throws IOException {
-         server = new ServerSocket(5555);
+        server = new ServerSocket(5555);
         while (true) {
-
             Socket cliente = server.accept();
             Thread thread = new Thread(new HiloDelServer(cliente, contador));
             listaHiloClients.add(cliente);
-
             contador++;
             thread.start();
         }
-
     }
 }
-

@@ -15,13 +15,21 @@ public class HiloEscritorCliente extends Thread{
 
     @Override
     public void run() {
+        Scanner scanner = new Scanner(System.in);
+        OutputStream outputStream = null;
+
+        try {
+            outputStream = socket.getOutputStream();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
         while (true) {
             try {
-                Scanner scanner = new Scanner(System.in);
                 String message = scanner.nextLine();
                 if(message.trim().length() > 0){
-                    OutputStream outputStream = socket.getOutputStream();
-                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(outputStream));
+
                     writer.write(message);
                     writer.newLine();
                     writer.flush();

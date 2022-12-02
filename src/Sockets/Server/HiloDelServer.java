@@ -24,15 +24,12 @@ public class HiloDelServer extends Thread{
                 System.out.println(finalLine);
 
                 Server.listaHiloClients.forEach(HiloCliente -> {
-                    OutputStream outputStream = null;
 
                     try {
-                        outputStream = HiloCliente.getOutputStream();
-                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
+                        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(HiloCliente.getOutputStream()));
                         bufferedWriter.write(finalLine);
                         bufferedWriter.newLine();
                         bufferedWriter.flush();
-
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
